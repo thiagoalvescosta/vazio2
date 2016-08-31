@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>barraHorizontalHTML5Preto</title>
+
+<script src="libs/easeljs-0.7.0.min.js"></script>
+<script src="libs/tweenjs-0.5.0.min.js"></script>
+<script src="libs/movieclip-0.7.0.min.js"></script>
+<script src="libs/preloadjs-0.4.0.min.js"></script>
+<script src="barraHorizontalHTML5Preto.js"></script>
+
+<script>
+var neonews_width = 800;
+var neonews_height = 50;
+var neonews_canvas_style = "background-color:#FFFFFF";
+var neonews_body_style = "background-color:#D4D4D4";
+</script>
+
+<script src="http://neonews/android_asset/neonews.js"></script>
+
+
+<script>
+
+var canvas, stage, exportRoot;
+
+function init() {
+	canvas = document.getElementById("canvas");
+	images = images||{};
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(lib.properties.manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete() {
+	exportRoot = new lib.barraHorizontalHTML5Preto();
+
+	 beforeInitNeonews();
+stage = new createjs.Stage(canvas);
+
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
+  initNeonews();
+}
+</script>
+</head>
+
+<style>
+@font-face { font-family: 'Gotham Rounded Bold'; src: url('fonts/gothamrnd-bold_0.otf'); }
+.font1 { font-family: 'Gotham Rounded Bold'; position: absolute; left: -100px; }
+@font-face { font-family: 'Gotham Rounded Medium'; src: url('fonts/gothamrnd-medium_0.otf'); }
+.font2 { font-family: 'Gotham Rounded Medium'; position: absolute; left: -100px; }
+</style>
+<script>
+var neonews_width = 800;
+var neonews_height = 50;
+var neonews_canvas_style = "background-color:#FFFFFF";
+var neonews_body_style = "background-color:#D4D4D4";
+</script>
+
+<script src="http://neonews/android_asset/neonews.js"></script>
+
+
+<script>
+document.write('<body onload="setTimeout(init, 100);" style="'+neonews_body_style+';overflow:hidden; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; padding: 0px">');</script>
+	<div class="font1">a</div>
+<div class="font2">a</div>
+<script>document.write('<canvas id="canvas" width="'+neonews_width+'" height="'+neonews_height+'" style="'+neonews_canvas_style+'"></canvas>');</script>
+</body>
+</html>
